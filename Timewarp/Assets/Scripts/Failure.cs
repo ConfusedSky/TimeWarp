@@ -21,11 +21,13 @@ public class Failure : MonoBehaviour
 
     public void FailImmediate()
     {
+        TimeManagement.instance.SetTimeScale(1f);
         Reload();
     }
 
 	public void Fail()
 	{
+        TimeManagement.instance.SetTimeScale(1f);
         fade.fadeSpeed = .15f;
         fade.FadeOut(Reload);
 	}

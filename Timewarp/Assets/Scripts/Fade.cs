@@ -19,7 +19,7 @@ public class Fade : MonoBehaviour
     {
         if (fade)
         {
-            alpha += fadeDir * fadeSpeed * Time.deltaTime;
+            alpha += fadeDir * fadeSpeed * Time.unscaledDeltaTime;
             alpha = Mathf.Clamp01(alpha);
             if (alpha <= 0 || alpha >= 1)
             {

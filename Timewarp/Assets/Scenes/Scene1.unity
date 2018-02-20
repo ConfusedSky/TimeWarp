@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTexture: {fileID: 2800000, guid: adb65bd8de406d9499c8b0746edca25b, type: 3}
-  fadeSpeed: 0.2
+  fadeSpeed: 0.5
   drawDepth: -1000
   fade: 1
 --- !u!1 &172007853
@@ -777,7 +777,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 635338626}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3e7ab6d45a436f4d9bdc33c3f2c6e56, type: 3}
+  m_Script: {fileID: 11500000, guid: fbc7c0e883c8a7243bf05e02e976447b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 548149710}
