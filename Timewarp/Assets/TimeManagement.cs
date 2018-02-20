@@ -16,20 +16,27 @@ public class TimeManagement : MonoBehaviour {
         instance = this;
     }
 
-	// Use this for initialization
-	void Start ()
-    {
+    [SerializeField]
+    private bool updateTime = false;
 
-	}
-
-    void Update()
+	void Update ()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
+        {
+            updateTime = true;
+        }
+
+    }
+
+    void FixedUpdate()
+    {
+        if(updateTime)
         {
             if(Time.timeScale == defaultTime)
                 SetTimeScale(1f);
             else
                 SetTimeScale(defaultTime);
+            updateTime = false;
         }
     }
 
@@ -38,7 +45,7 @@ public class TimeManagement : MonoBehaviour {
         playerScale = Time.timeScale / scale;
         Time.timeScale = scale;
         Time.fixedDeltaTime = Time.timeScale * .02f;
-        Invoke("UpdatePlayer", .05f*scale);
+        UpdatePlayer();
     }
 
     private void UpdatePlayer()
