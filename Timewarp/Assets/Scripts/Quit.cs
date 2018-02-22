@@ -13,7 +13,7 @@ public class Quit : MonoBehaviour {
 
     public void Restart()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     public void Exit()
