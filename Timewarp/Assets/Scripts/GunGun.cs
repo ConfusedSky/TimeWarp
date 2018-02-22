@@ -9,6 +9,9 @@ public class GunGun : MonoBehaviour {
     public GameObject crosshair;
     public GameObject flash;
 
+    public GameObject bullet;
+    public GameObject bulletSpawn;
+
     public Vector3 restingPosition;
     public Vector3 upPosition;
     public Vector3 upRotation;
@@ -85,6 +88,11 @@ public class GunGun : MonoBehaviour {
                     shootable.OnShot();
                 }
             }
+        }
+        else
+        {
+            GameObject ob = Instantiate(bullet,bulletSpawn.transform.position,bulletSpawn.transform.rotation);
+            ob.SetActive(true);
         }
     }
 

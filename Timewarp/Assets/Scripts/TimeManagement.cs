@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityStandardAssets.Characters.FirstPerson;
 
 public class TimeManagement : MonoBehaviour {
@@ -8,6 +9,11 @@ public class TimeManagement : MonoBehaviour {
     public static TimeManagement instance;
     public FirstPersonController player;
     public float defaultTime = .05f;
+
+    public PostProcessingBehaviour postpost;
+
+    public PostProcessingProfile slow;
+    public PostProcessingProfile fast;
 
     private float playerScale = 0;
 
@@ -32,7 +38,7 @@ public class TimeManagement : MonoBehaviour {
     {
         if(updateTime)
         {
-            if(Time.timeScale == defaultTime)
+            if (Time.timeScale == defaultTime)
                 SetTimeScale(1f);
             else
                 SetTimeScale(defaultTime);
@@ -42,6 +48,9 @@ public class TimeManagement : MonoBehaviour {
 
     public void SetTimeScale(float scale)
     {
+        if (scale > .9f) postpost.profile = slow;
+        else postpost.profile = fast;
+
         playerScale = Time.timeScale / scale;
         Time.timeScale = scale;
         Time.fixedDeltaTime = Time.timeScale * .02f;

@@ -9,7 +9,7 @@ public class Whacker : MonoBehaviour {
 
 	void OnTriggerStay(Collider other)
     {
-        if(activeTill > Time.time && Time.timeScale > .9f)
+        if(Time.timeScale > .9f)
         {
             Debug.Log(other.gameObject);
             other.GetComponent<CharacterController>().Move(force*Time.deltaTime);
