@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour {
     public float lifetime = 5f;
     public float speed = 200f;
 
+    public GameObject flash;
+
     private float ttd;
     private Rigidbody rb;
 
@@ -29,6 +31,10 @@ public class Bullet : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
         Debug.Log(other);
+
+        GameObject flashGO = Instantiate(flash, other.contacts[0].point, Quaternion.LookRotation(other.contacts[0].normal));
+        Destroy(flashGO, 3f);
+
         IShootable shootable = other.gameObject.GetComponent<IShootable>();
         if(shootable != null)
         {

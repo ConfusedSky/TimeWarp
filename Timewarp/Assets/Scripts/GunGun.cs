@@ -38,6 +38,7 @@ public class GunGun : MonoBehaviour {
     {
         active = true;
         gun.SetActive(true);
+        CheckpointManager.GunActive();
     }
 
     public void Update()

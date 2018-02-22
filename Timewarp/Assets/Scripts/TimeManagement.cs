@@ -15,6 +15,9 @@ public class TimeManagement : MonoBehaviour {
     public PostProcessingProfile slow;
     public PostProcessingProfile fast;
 
+    public delegate void something();
+    public event something timeChanged;
+
     private float playerScale = 0;
 
     void Awake()
@@ -55,6 +58,8 @@ public class TimeManagement : MonoBehaviour {
         Time.timeScale = scale;
         Time.fixedDeltaTime = Time.timeScale * .02f;
         UpdatePlayer();
+        if (timeChanged != null)
+            timeChanged.Invoke();
     }
 
     private void UpdatePlayer()
