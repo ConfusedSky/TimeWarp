@@ -16,6 +16,7 @@ public class EndGame : MonoBehaviour {
     {
         // Automatically deletes itself because scene is deleted
         CheckpointManager.UpdateCheckpoint((new GameObject()).transform);
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        TimeManagement.instance.SetTimeScale(1f);
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 }

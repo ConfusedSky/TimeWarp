@@ -7,15 +7,13 @@ public class Failure : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
-            // Automatically deletes itself because scene is reinitialized
-            CheckpointManager.UpdateCheckpoint((new GameObject()).transform);
             FailImmediate();
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            BringMenu();
         }
     }
 
@@ -35,5 +33,56 @@ public class Failure : MonoBehaviour
     public void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+    }
+
+
+    private float timeScale = 0;
+    private bool menuOn = false;
+    public GameObject menu;
+    public MonoBehaviour[] inputSources;
+    public GunGun gg;
+
+    public void BringMenu()
+    {
+        if(!menuOn)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.None;
+
+            timeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            foreach(MonoBehaviour go in inputSources)
+            {
+                go.enabled = false;
+            }
+            gg.enabled = false;
+            menu.SetActive(true);
+            menuOn = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+
+            Time.timeScale = timeScale;
+            foreach (MonoBehaviour go in inputSources)
+            {
+                go.enabled = true;
+            }
+            gg.enabled = true;
+            menu.SetActive(false);
+            menuOn = false;
+        }
+    }
+
+    public void Restart()
+    {
+        CheckpointManager.UpdateCheckpoint((new GameObject()).transform);
+        FailImmediate();
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }
